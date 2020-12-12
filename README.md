@@ -1,5 +1,24 @@
 # spring-oauth2
 
+## Authentication
+
+### `grant_type=password`
+
+To get an access token:
+
+    curl -v -XPOST -u client:secret http://localhost:8080/oauth/token?grant_type=password&username=john&password=12345&scope=read
+
+### `grant_type=authentication_code`
+
+Open in the browser and login:
+
+    http://localhost:8080/oauth/authorize?response_type=code&client_id=client&scope=read
+
+You'll be redirected to a non-existing service but you can fetch the code from the URL.
+Use the code here to get an access token:
+
+    curl -v -XPOST -u client:secret "http://localhost:8080/oauth/token?grant_type=authorization_code&scope=read&code={CODE}"
+
 ## Troubleshouting
 
 ### ClassNotFoundException: org.apache.maven.wrapper.MavenWrapperMain
