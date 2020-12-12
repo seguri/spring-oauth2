@@ -25,7 +25,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         .inMemory()
         .withClient("client")
         .secret("secret")
-        .authorizedGrantTypes("password")
-        .scopes("read");
+        .authorizedGrantTypes("authorization_code")
+        .scopes("read")
+        // Where you'll be redirected after login and granting scope=read to client_id=client
+        .redirectUris("http://localhost:9090/noserviceatthisportnumber");
   }
 }
