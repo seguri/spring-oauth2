@@ -31,7 +31,7 @@ To get an access token and a refresh token:
 
     curl -v -XPOST -u client:secret "http://localhost:8080/oauth/token?grant_type=password&username=john&password=12345&scope=read"
 
-### JWT
+### JWT (symmetric and asymmetric key scenarios)
 
 To get an access token and a refresh token:
 
