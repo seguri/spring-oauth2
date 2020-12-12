@@ -19,6 +19,12 @@ Use the code here to get an access token:
 
     curl -v -XPOST -u client:secret "http://localhost:8080/oauth/token?grant_type=authorization_code&scope=read&code={CODE}"
 
+### `grant_type=client_credentials`
+
+To get an access token:
+
+    curl -v -XPOST -u client:secret "http://localhost:8080/oauth/token?grant_type=client_credentials&scope=info"
+
 ## Troubleshouting
 
 ### ClassNotFoundException: org.apache.maven.wrapper.MavenWrapperMain
