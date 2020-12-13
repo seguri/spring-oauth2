@@ -31,6 +31,14 @@ public class Client {
     this.scope = scope;
   }
 
+  public static Client from(Client other, String clientSecret) {
+    Client client = new Client();
+    client.clientId = other.clientId;
+    client.clientSecret = clientSecret;
+    client.scope = other.scope;
+    return client;
+  }
+
   public Long getId() {
     return id;
   }

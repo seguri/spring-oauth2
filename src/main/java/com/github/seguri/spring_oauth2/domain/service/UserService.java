@@ -32,7 +32,8 @@ public class UserService {
   }
 
   public void saveTestUser() {
-    User client = new User("john", "12345", "read");
+    User client =
+        new User("john", "$2a$10$Bzo60x72H.6mBCuUT/KJMOdFma3aKztb1DjoPhQoV3S4Ynj48bqhq", "read");
     User saved = save(client);
     LOGGER.info("Saved '{}'", saved);
   }

@@ -32,6 +32,14 @@ public class User {
     this.authority = authority;
   }
 
+  public static User from(User other, String password) {
+    User user = new User();
+    user.username = other.username;
+    user.password = password;
+    user.authority = other.authority;
+    return user;
+  }
+
   public Long getId() {
     return id;
   }

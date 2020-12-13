@@ -32,7 +32,9 @@ public class ClientService {
   }
 
   public void saveTestClient() {
-    Client client = new Client("client", "secret", "read");
+    Client client =
+        new Client(
+            "client", "$2a$10$ow7g/dN/y2yeNgRlsemjQOFasZwBgKEir4L.kfxpCI0iYIWLo0pJK", "read");
     Client saved = save(client);
     LOGGER.info("Saved '{}'", saved);
   }
