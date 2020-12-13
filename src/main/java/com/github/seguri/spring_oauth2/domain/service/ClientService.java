@@ -2,6 +2,7 @@ package com.github.seguri.spring_oauth2.domain.service;
 
 import com.github.seguri.spring_oauth2.domain.Client;
 import com.github.seguri.spring_oauth2.domain.repository.ClientRepository;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,10 @@ public class ClientService {
   @Autowired
   public ClientService(ClientRepository clientRepository) {
     this.clientRepository = clientRepository;
+  }
+
+  public List<Client> findAll() {
+    return clientRepository.findAll();
   }
 
   public Optional<Client> findByClientId(String clientId) {

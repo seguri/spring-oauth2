@@ -29,6 +29,7 @@ public class AuthenticationTest {
                 .queryParam("password", "12345")
                 .queryParam("scope", "read"))
         .andExpect(jsonPath("$.access_token").exists())
+        .andExpect(jsonPath("$.refresh_token").exists())
         .andExpect(status().isOk());
   }
 }
