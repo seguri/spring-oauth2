@@ -1,20 +1,17 @@
 package com.github.seguri.spring_oauth2.infrastructure.config;
 
-import com.github.seguri.spring_oauth2.domain.SimpleSecurityUser;
-import com.github.seguri.spring_oauth2.domain.service.InMemoryUserDetailsService;
 import com.github.seguri.spring_oauth2.domain.service.UserService;
-import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 /** User management. */
 @Configuration
@@ -25,9 +22,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Bean
   @Override
   protected UserDetailsService userDetailsService() {
-    List<UserDetails> usersDetails =
-        userService.findAll().stream().map(SimpleSecurityUser::new).collect(Collectors.toList());
-    return new InMemoryUserDetailsService(usersDetails);
+    var uds = new InMemoryUserDetailsManager();
+    var u = User.withUsername("john").password("12345").authorities("read").build();
+    uds.createUser(u);
+    return uds;
   }
 
   @Bean
