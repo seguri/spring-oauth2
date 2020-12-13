@@ -1,4 +1,4 @@
-package com.github.seguri.spring_oauth2.config;
+package com.github.seguri.spring_oauth2.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
