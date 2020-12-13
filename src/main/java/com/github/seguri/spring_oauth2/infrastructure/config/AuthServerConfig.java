@@ -1,5 +1,6 @@
 package com.github.seguri.spring_oauth2.infrastructure.config;
 
+import com.github.seguri.spring_oauth2.domain.service.JpaClientDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -33,12 +34,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
   @Override
   public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-    clients
-        .inMemory()
-        .withClient("client")
-        .secret("secret")
-        .authorizedGrantTypes("password", "refresh_token")
-        .scopes("read");
+    clients.withClientDetails(new JpaClientDetailsService());
   }
 
   @Override
