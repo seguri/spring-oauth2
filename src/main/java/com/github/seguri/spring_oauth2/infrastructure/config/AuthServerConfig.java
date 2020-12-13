@@ -49,9 +49,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         .accessTokenConverter(jwtAccessTokenConverter());
   }
 
-  /**
-   * Expose the public key to authenticated clients.
-   */
+  /** Expose the public key to authenticated clients. */
   @Override
   public void configure(AuthorizationServerSecurityConfigurer security) {
     security.tokenKeyAccess("isAuthenticated()");
