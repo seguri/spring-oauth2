@@ -1,6 +1,8 @@
 package com.github.seguri.spring_oauth2.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 
@@ -8,7 +10,10 @@ import org.springframework.data.annotation.PersistenceConstructor;
 @Entity
 public class User {
 
-  @Id private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   private String username;
   private String password;
   private String authority;
@@ -36,5 +41,22 @@ public class User {
 
   public String getAuthority() {
     return authority;
+  }
+
+  @Override
+  public String toString() {
+    return "User{"
+        + "id="
+        + id
+        + ", username='"
+        + username
+        + '\''
+        + ", password='"
+        + password
+        + '\''
+        + ", authority='"
+        + authority
+        + '\''
+        + '}';
   }
 }

@@ -1,13 +1,18 @@
 package com.github.seguri.spring_oauth2.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 @Entity
 public class Client {
 
-  @Id private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   private String clientId;
   private String clientSecret;
   private String scope;
@@ -35,5 +40,22 @@ public class Client {
 
   public String getScope() {
     return scope;
+  }
+
+  @Override
+  public String toString() {
+    return "Client{"
+        + "id="
+        + id
+        + ", clientId='"
+        + clientId
+        + '\''
+        + ", clientSecret='"
+        + clientSecret
+        + '\''
+        + ", scope='"
+        + scope
+        + '\''
+        + '}';
   }
 }
