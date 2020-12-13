@@ -1,9 +1,11 @@
 package com.github.seguri.spring_oauth2.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 @Entity
@@ -13,9 +15,12 @@ public class Client {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotNull
+  @Column(unique = true)
   private String clientId;
-  private String clientSecret;
-  private String scope;
+
+  @NotNull private String clientSecret;
+  @NotNull private String scope;
 
   @PersistenceConstructor
   public Client() {}
