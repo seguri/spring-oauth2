@@ -2,10 +2,12 @@ package com.github.seguri.spring_oauth2.domain.application.rest;
 
 import com.github.seguri.spring_oauth2.domain.User;
 import com.github.seguri.spring_oauth2.domain.service.UserService;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +21,14 @@ public class UserController {
 
   @Autowired private UserService userService;
 
+  @GetMapping
+  public List<User> getUsers() {
+    return userService.findAll();
+  }
+
   @PostMapping(consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
-  public User postTaco(@RequestBody User user) {
+  public User createUser(@RequestBody User user) {
     User saved = userService.save(user);
     LOGGER.info("Saved '{}'", saved);
     return saved;
