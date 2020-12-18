@@ -1,4 +1,4 @@
-package com.github.seguri.spring_oauth2;
+package com.github.seguri.spring_oauth2.as;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

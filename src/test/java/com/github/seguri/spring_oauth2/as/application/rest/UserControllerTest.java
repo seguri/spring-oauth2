@@ -1,4 +1,4 @@
-package com.github.seguri.spring_oauth2.application.rest;
+package com.github.seguri.spring_oauth2.as.application.rest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
