@@ -1,6 +1,6 @@
-package com.github.seguri.spring_oauth2.domain.service;
+package com.github.seguri.spring_oauth2.as.domain.service;
 
-import com.github.seguri.spring_oauth2.domain.SimpleSecurityUser;
+import com.github.seguri.spring_oauth2.as.domain.SimpleSecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

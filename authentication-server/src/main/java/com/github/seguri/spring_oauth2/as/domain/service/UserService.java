@@ -1,7 +1,7 @@
-package com.github.seguri.spring_oauth2.domain.service;
+package com.github.seguri.spring_oauth2.as.domain.service;
 
-import com.github.seguri.spring_oauth2.domain.User;
-import com.github.seguri.spring_oauth2.domain.repository.UserRepository;
+import com.github.seguri.spring_oauth2.as.domain.User;
+import com.github.seguri.spring_oauth2.as.domain.repository.UserRepository;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;

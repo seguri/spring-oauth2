@@ -1,6 +1,6 @@
 package com.github.seguri.spring_oauth2.as.infrastructure.config;
 
-import com.github.seguri.spring_oauth2.domain.service.JpaClientDetailsService;
+import com.github.seguri.spring_oauth2.as.domain.service.JpaClientDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

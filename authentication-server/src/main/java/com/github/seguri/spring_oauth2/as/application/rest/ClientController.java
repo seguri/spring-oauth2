@@ -1,7 +1,7 @@
-package com.github.seguri.spring_oauth2.domain.application.rest;
+package com.github.seguri.spring_oauth2.as.application.rest;
 
-import com.github.seguri.spring_oauth2.domain.User;
-import com.github.seguri.spring_oauth2.domain.service.UserService;
+import com.github.seguri.spring_oauth2.as.domain.Client;
+import com.github.seguri.spring_oauth2.as.domain.service.ClientService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,23 +16,24 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/users", produces = "application/json")
-public class UserController {
-  private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+@RequestMapping(path = "/clients", produces = "application/json")
+public class ClientController {
+  private static final Logger LOGGER = LoggerFactory.getLogger(ClientController.class);
 
-  @Autowired private UserService userService;
+  @Autowired private ClientService clientService;
   @Autowired private PasswordEncoder passwordEncoder;
 
   @GetMapping
-  public List<User> getUsers() {
-    return userService.findAll();
+  public List<Client> getClients() {
+    return clientService.findAll();
   }
 
   @PostMapping(consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
-  public User createUser(@RequestBody User user) {
-    User userWithEncryptedPassword = User.from(user, passwordEncoder.encode(user.getPassword()));
-    User saved = userService.save(userWithEncryptedPassword);
+  public Client createClient(@RequestBody Client client) {
+    Client clientWithEncryptedClientSecret =
+        Client.from(client, passwordEncoder.encode(client.getClientSecret()));
+    Client saved = clientService.save(clientWithEncryptedClientSecret);
     LOGGER.info("Saved '{}'", saved);
     return saved;
   }

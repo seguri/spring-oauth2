@@ -1,4 +1,4 @@
-package com.github.seguri.spring_oauth2.domain;
+package com.github.seguri.spring_oauth2.as.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

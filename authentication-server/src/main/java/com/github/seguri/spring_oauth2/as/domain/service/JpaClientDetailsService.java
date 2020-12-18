@@ -1,6 +1,6 @@
-package com.github.seguri.spring_oauth2.domain.service;
+package com.github.seguri.spring_oauth2.as.domain.service;
 
-import com.github.seguri.spring_oauth2.domain.SimpleOauth2Client;
+import com.github.seguri.spring_oauth2.as.domain.SimpleOauth2Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;

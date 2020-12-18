@@ -1,4 +1,4 @@
-package com.github.seguri.spring_oauth2.domain;
+package com.github.seguri.spring_oauth2.as.domain;
 
 import java.util.Collection;
 import java.util.Map;
