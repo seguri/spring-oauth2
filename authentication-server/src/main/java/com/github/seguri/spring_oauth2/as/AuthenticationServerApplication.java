@@ -1,4 +1,4 @@
-package com.github.seguri.spring_oauth2;
+package com.github.seguri.spring_oauth2.as;
 
 import com.github.seguri.spring_oauth2.domain.service.ClientService;
 import com.github.seguri.spring_oauth2.domain.service.UserService;
