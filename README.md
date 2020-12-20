@@ -41,6 +41,16 @@ To get the public key:
 
     curl -u client:secret "http://localhost:8080/oauth/token_key"
 
+## Asymmetric keys
+
+Generation:
+
+    keytool -genkeypair -alias ssia -keyalg RSA -keypass ssia123 -keystore ssia.jks -storepass ssia123
+
+Get public key:
+
+    keytool -list -rfc --keystore ssia.jks | openssl x509 -inform pem -pubkey
+
 ## Troubleshouting
 
 ### ClassNotFoundException: org.apache.maven.wrapper.MavenWrapperMain
