@@ -1,12 +1,13 @@
 # spring-oauth2
 
-## Authentication
+## Authentication server
 
 ### `grant_type=password`
 
 To get an access token:
 
     curl -v -XPOST -u client:secret "http://localhost:8080/oauth/token?grant_type=password&username=john&password=12345&scope=read"
+    http -a client:secret POST localhost:8080/oauth/token grant_type==password username==john password==12345 scope==read
 
 ### `grant_type=authentication_code`
 
@@ -50,6 +51,13 @@ Generation:
 Get public key:
 
     keytool -list -rfc --keystore ssia.jks | openssl x509 -inform pem -pubkey
+
+## Resource server
+
+Access resource with token:
+
+    curl -H "Authorization:Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." "http://localhost:8081/profile/john"
+    curl -H "Authorization:Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..." "http://localhost:8081/metric/john"
 
 ## Troubleshouting
 
