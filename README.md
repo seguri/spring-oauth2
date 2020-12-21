@@ -2,6 +2,14 @@
 
 ## Authentication server
 
+## Create user
+
+    http POST http://localhost:8080/users username=admin password=changeme authority=write
+
+## Create client
+
+    http POST http://localhost:8080/clients clientId=client clientSecret=secret scope=write
+
 ### `grant_type=password`
 
 To get an access token:

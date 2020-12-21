@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 /** Defines a User as a JPA Entity. */
 @Entity
+@Table(name = "users")
 public class User {
 
   @Id
