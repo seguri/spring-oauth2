@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Discussion: https://gist.github.com/angelo-v/e0208a18d455e2e6ea3c40ad637aac53
+#
+
+# Method A
+#sed -e 's/-/+/g' -e 's|_|/|g' access_token.txt | jq --raw-input 'split(".") | .[1] | @base64d | fromjson'
+
+# Method B
+jq --raw-input 'gsub("-";"+") | gsub("_";"/") | split(".") | .[1] | @base64d | fromjson' < access_token.txt

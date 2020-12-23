@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# Useless endpoint
+#
+
+echo '[{"advice":"advice1","username":"foo"},{"advice":"advice2","username":"bar"}]' | http -v POST localhost:8081/advice "Authorization:Bearer $(<access_token.txt)"

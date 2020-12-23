@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# The identity used to fetch the profile is determined by the saved access token.
+# No need to specify an identity; just authenticate with the desired user:
+#
+#    $ get-token john && get-profile jack
+#    Forbidden
+#
+
+case "$1" in
+    admin)
+        u=admin
+        ;;
+    john)
+        u=john
+        ;;
+    jack)
+        u=jack
+        ;;
+    *)
+        echo >&2 "$1: unknown user"
+        exit 1
+esac
+
+curl -s -w "%{http_code}" -H "Authorization:Bearer $(<access_token.txt)" "http://localhost:8081/profile/${u}" | jq

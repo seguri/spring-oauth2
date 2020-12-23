@@ -1,0 +1,21 @@
+#!/bin/bash
+
+case "$1" in
+    admin)
+        u=admin
+        p=changeme
+        ;;
+    john)
+        u=john
+        p=12345
+        ;;
+    jack)
+        u=jack
+        p=12345
+        ;;
+    *)
+        echo >&2 "$1: unknown user"
+        exit 1
+esac
+
+curl -s -X POST -u client:secret "http://localhost:8080/oauth/token?grant_type=password&username=${u}&password=${p}&scope=write" | jq -r '.access_token' | tee access_token.txt
