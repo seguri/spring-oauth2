@@ -41,6 +41,10 @@ public class HealthMetricService {
     ;
   }
 
+  /**
+   * `authentication.principal` contains the JWT. Is is only signed, not encrypted. You can see it's
+   * content at jwt.io
+   */
   public List<HealthMetric> findHealthMetricHistory(String username) {
     return healthMetricRepository.findHealthMetricHistory(username);
   }

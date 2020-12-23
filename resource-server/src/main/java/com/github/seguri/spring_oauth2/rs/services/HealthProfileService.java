@@ -5,6 +5,7 @@ import com.github.seguri.spring_oauth2.rs.exceptions.HealthProfileAlreadyExistsE
 import com.github.seguri.spring_oauth2.rs.exceptions.NonExistentHealthProfileException;
 import com.github.seguri.spring_oauth2.rs.repositories.HealthProfileRepository;
 import java.util.Optional;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,11 @@ public class HealthProfileService {
     }
   }
 
+  /**
+   * `authentication.principal` contains the JWT. Is is only signed, not encrypted. You can see it's
+   * content at jwt.io
+   */
+  @PreAuthorize("#username == authentication.principal.user_name")
   public HealthProfile findHealthProfile(String username) {
     Optional<HealthProfile> healthProfile =
         healthProfileRepository.findHealthProfileByUsername(username);
