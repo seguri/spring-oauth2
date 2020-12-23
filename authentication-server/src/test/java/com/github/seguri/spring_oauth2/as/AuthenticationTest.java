@@ -27,7 +27,7 @@ public class AuthenticationTest {
                 .queryParam("grant_type", "password")
                 .queryParam("username", "john")
                 .queryParam("password", "12345")
-                .queryParam("scope", "read"))
+                .queryParam("scope", "write"))
         .andExpect(jsonPath("$.access_token").exists())
         .andExpect(jsonPath("$.refresh_token").exists())
         .andExpect(status().isOk());
