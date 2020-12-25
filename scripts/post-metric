@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# The identity used to fetch the profile is determined by the saved access token.
+# No need to specify an identity; just authenticate with the desired user:
+#
+#    $ get-token john && get-profile jack
+#    Forbidden
+#
+
+case "$1" in
+    admin|john|jack|foo)
+        ;;
+    *)
+        echo >&2 "$1: unknown user"
+        exit 1
+esac
+
+read -d '' -r json <<END_OF_JSON
+{
+  "profile": {
+    "username": "$1"
+  },
+  "type": "BLOOD_OXYGEN_LEVEL",
+  "value": 99
+}
+END_OF_JSON
+
+echo "$json" | http -v --style native POST "http://localhost:8081/metric" "Authorization:Bearer $(<access_token.txt)"
