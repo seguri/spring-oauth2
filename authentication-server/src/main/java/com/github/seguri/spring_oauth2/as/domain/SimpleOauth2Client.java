@@ -46,7 +46,7 @@ public class SimpleOauth2Client implements ClientDetails {
 
   @Override
   public Set<String> getAuthorizedGrantTypes() {
-    return Set.of("password", "refresh_token");
+    return Set.of("password", "refresh_token", "client_credentials");
   }
 
   /**

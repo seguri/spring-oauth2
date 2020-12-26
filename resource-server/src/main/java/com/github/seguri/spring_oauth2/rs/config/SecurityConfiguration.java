@@ -6,6 +6,7 @@ import java.security.KeyFactory;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,8 +70,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   /**
    * By default, the JwtConverter that comes with Spring Security takes scopes from the JWT and uses
    * them as authorities. For this reason, if you have authorities=["read"] and scopes=["write"],
-   * your request will be considered as "write". This converter forces the JWT to use the
-   * authorities array.
+   * your request will be considered as "write". This converter uses authorities only if available,
+   * or scopes as a fallback.
    */
   private Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter() {
     JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
@@ -78,7 +79,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     converter.setJwtGrantedAuthoritiesConverter(
         j -> {
           var authorities = (List<String>) j.getClaims().get("authorities");
-          return authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+          var scopes = (List<String>) j.getClaims().get("scope");
+          return authorities != null
+              ? authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList())
+              : scopes != null
+                  ? scopes.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList())
+                  : Collections.emptyList();
         });
 
     return converter;

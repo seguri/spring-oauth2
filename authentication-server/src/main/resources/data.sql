@@ -1,9 +1,12 @@
 -- client/secret
 -- resourceserver/resourceserver
+-- adviceClient/adviceSecret
 INSERT INTO clients (id, client_id, client_secret, scope)
 VALUES ('1', 'client', '$2a$10$ow7g/dN/y2yeNgRlsemjQOFasZwBgKEir4L.kfxpCI0iYIWLo0pJK', 'write');
 INSERT INTO clients (id, client_id, client_secret, scope)
 VALUES ('2', 'resourceserver', '$2a$10$2Qt3CSiZ2b5QODITe/z.1udJngNIJQ7qUpp/iY7Fphz6dgWoKjQvC', 'read');
+INSERT INTO clients (id, client_id, client_secret, scope)
+VALUES ('3', 'adviceClient', '$2a$10$rmGcbnM6Z9BSN3IEkz/SdOjzJAKM0Hd6SzSha8IEebCdB6KaGoLIe', 'advice');
 
 -- admin/changeme
 -- john/12345
