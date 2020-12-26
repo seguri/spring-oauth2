@@ -23,7 +23,8 @@ public class HealthProfileService {
     healthProfileRepository
         .findHealthProfileByUsername(profile.getUsername())
         .ifPresentOrElse(
-            healthProfileRepository::save, HealthProfileAlreadyExistsException::throwDefault);
+            HealthProfileAlreadyExistsException::throwWith,
+            () -> healthProfileRepository.save(profile));
   }
 
   @PreAuthorize("@ownerOrAdminAuthorizer.isOwnerOrAdmin(#username)")
