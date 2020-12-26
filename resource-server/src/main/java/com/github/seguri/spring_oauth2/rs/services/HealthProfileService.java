@@ -4,8 +4,6 @@ import com.github.seguri.spring_oauth2.rs.entities.HealthProfile;
 import com.github.seguri.spring_oauth2.rs.exceptions.HealthProfileAlreadyExistsException;
 import com.github.seguri.spring_oauth2.rs.exceptions.NonExistentHealthProfileException;
 import com.github.seguri.spring_oauth2.rs.repositories.HealthProfileRepository;
-import java.util.Optional;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,38 +18,22 @@ public class HealthProfileService {
   }
 
   public void addHealthProfile(HealthProfile profile) {
-    Optional<HealthProfile> healthProfile =
-        healthProfileRepository.findHealthProfileByUsername(profile.getUsername());
-
-    if (healthProfile.isEmpty()) {
-      healthProfileRepository.save(profile);
-    } else {
-      throw new HealthProfileAlreadyExistsException("This health profile already exists.");
-    }
+    healthProfileRepository
+        .findHealthProfileByUsername(profile.getUsername())
+        .ifPresentOrElse(
+            healthProfileRepository::save, HealthProfileAlreadyExistsException::throwDefault);
   }
 
-  /**
-   * `authentication.principal` contains the JWT. Is is only signed, not encrypted. You can see it's
-   * content at jwt.io
-   */
-  @PreAuthorize("#username == authentication.principal.user_name")
   public HealthProfile findHealthProfile(String username) {
-    Optional<HealthProfile> healthProfile =
-        healthProfileRepository.findHealthProfileByUsername(username);
-
-    return healthProfile.orElseThrow(
-        () -> new NonExistentHealthProfileException("No profile found for the provided username."));
+    return healthProfileRepository
+        .findHealthProfileByUsername(username)
+        .orElseThrow(NonExistentHealthProfileException::new);
   }
 
   public void deleteHealthProfile(String username) {
-    Optional<HealthProfile> healthProfile =
-        healthProfileRepository.findHealthProfileByUsername(username);
-
-    healthProfile.ifPresentOrElse(
-        p -> healthProfileRepository.delete(p),
-        () -> {
-          throw new NonExistentHealthProfileException(
-              "No profile found for the provided username.");
-        });
+    healthProfileRepository
+        .findHealthProfileByUsername(username)
+        .ifPresentOrElse(
+            healthProfileRepository::delete, NonExistentHealthProfileException::throwDefault);
   }
 }
