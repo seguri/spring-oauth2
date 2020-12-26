@@ -30,8 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().ignoringAntMatchers("/h2-console/**", "/users/**", "/clients/**");
-    http.authorizeRequests().mvcMatchers("/h2-console/**", "/users/**", "/clients/**").permitAll();
+    http.authorizeRequests()
+        .mvcMatchers("/h2-console/**", "/users/**", "/clients/**")
+        .permitAll()
+        .anyRequest()
+        .authenticated();
     http.headers().frameOptions().sameOrigin();
-    super.configure(http);
   }
 }
