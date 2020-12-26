@@ -8,11 +8,11 @@
 #
 
 case "$1" in
-    admin|john|jack)
+    admin|john|jack|foo)
         ;;
     *)
         echo >&2 "$1: unknown user"
         exit 1
 esac
 
-http -v --style native POST "http://localhost:8081/profile" "Authorization:Bearer $(<access_token.txt)" "username==$1"
+http -v --style native POST "http://localhost:8081/profile" "Authorization:Bearer $(<access_token.txt)" "username=$1"
