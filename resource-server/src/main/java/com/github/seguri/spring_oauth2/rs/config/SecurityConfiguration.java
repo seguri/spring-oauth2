@@ -39,8 +39,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                   j.decoder(jwtDecoder());
                   j.jwtAuthenticationConverter(jwtAuthenticationConverter());
                 }));
+
+    http.csrf().ignoringAntMatchers("/h2-console/**");
+    http.headers().frameOptions().sameOrigin();
+
     // DELETE operations on profile and metrics can only be performed by administrators
     http.authorizeRequests()
+        .mvcMatchers("/h2-console/**")
+        .permitAll()
         .mvcMatchers(DELETE, "/profile/**", "/metric/**")
         .hasAuthority("write")
         .anyRequest()
