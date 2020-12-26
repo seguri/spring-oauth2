@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl -s -X POST -u adviceClient:adviceSecret "http://localhost:8080/oauth/token?grant_type=client_credentials&scope=advice" | jq -r '.access_token' | tee access_token.txt

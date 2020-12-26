@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# Create client, values are currently hardcoded
+#
+
+http -v --style native POST "http://localhost:8080/clients/" "Authorization:Bearer $(<access_token.txt)" clientId=adviceClient clientSecret=adviceSecret scope=advice
