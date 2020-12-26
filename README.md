@@ -33,6 +33,7 @@ Use the code here to get an access token:
 To get an access token:
 
     curl -v -XPOST -u client:secret "http://localhost:8080/oauth/token?grant_type=client_credentials&scope=info"
+    http -a adviceClient:adviceSecret POST "http://localhost:8080/oauth/token?grant_type=client_credentials&scope=advice"
 
 ### `grant_type=[password,refresh_token]`
 
