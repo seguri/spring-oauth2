@@ -35,6 +35,7 @@ public class HealthMetricService {
             NonExistentHealthProfileException::throwDefault);
   }
 
+  @PreAuthorize("#username == authentication.principal.claims['user_name']")
   public List<HealthMetric> findHealthMetricHistory(String username) {
     return healthMetricRepository.findHealthMetricHistory(username);
   }
