@@ -4,6 +4,7 @@ import com.github.seguri.spring_oauth2.rs.entities.HealthProfile;
 import com.github.seguri.spring_oauth2.rs.exceptions.HealthProfileAlreadyExistsException;
 import com.github.seguri.spring_oauth2.rs.exceptions.NonExistentHealthProfileException;
 import com.github.seguri.spring_oauth2.rs.repositories.HealthProfileRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ public class HealthProfileService {
     this.healthProfileRepository = healthProfileRepository;
   }
 
+  @PreAuthorize("#profile.username == authentication.principal.claims['user_name']")
   public void addHealthProfile(HealthProfile profile) {
     healthProfileRepository
         .findHealthProfileByUsername(profile.getUsername())
