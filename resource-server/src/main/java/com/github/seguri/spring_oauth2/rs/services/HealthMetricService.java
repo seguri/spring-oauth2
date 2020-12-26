@@ -5,6 +5,7 @@ import com.github.seguri.spring_oauth2.rs.exceptions.NonExistentHealthProfileExc
 import com.github.seguri.spring_oauth2.rs.repositories.HealthMetricRepository;
 import com.github.seguri.spring_oauth2.rs.repositories.HealthProfileRepository;
 import java.util.List;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ public class HealthMetricService {
     this.healthProfileRepository = healthProfileRepository;
   }
 
+  @PreAuthorize("#healthMetric.profile.username == authentication.principal.claims['user_name']")
   public void addHealthMetric(HealthMetric healthMetric) {
     healthProfileRepository
         .findHealthProfileByUsername(healthMetric.getProfile().getUsername())
