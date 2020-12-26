@@ -1,7 +1,4 @@
 #!/bin/bash
-#
-# Useless endpoint
-#
 
 read -d '' -r json <<END_OF_JSON
 [
@@ -11,6 +8,9 @@ read -d '' -r json <<END_OF_JSON
   }, {
     "advice": "advice2",
     "username": "bar"
+  }, {
+    "advice": "advice3",
+    "username": "baz"
   }
 ]
 END_OF_JSON
