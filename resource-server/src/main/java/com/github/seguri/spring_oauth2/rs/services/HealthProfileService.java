@@ -26,6 +26,7 @@ public class HealthProfileService {
             healthProfileRepository::save, HealthProfileAlreadyExistsException::throwDefault);
   }
 
+  @PreAuthorize("@ownerOrAdminAuthorizer.isOwnerOrAdmin(#username)")
   public HealthProfile findHealthProfile(String username) {
     return healthProfileRepository
         .findHealthProfileByUsername(username)
