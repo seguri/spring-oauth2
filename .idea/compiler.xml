@@ -8,10 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="resource-server" />
         <module name="authentication-server" />
+        <module name="gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="authentication-server" target="11" />
+      <module name="gateway" target="11" />
       <module name="resource-server" target="11" />
       <module name="spring-oauth2" target="11" />
     </bytecodeTargetLevel>
@@ -19,6 +21,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="authentication-server" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="resource-server" options="-parameters" />
       <module name="spring-oauth2" options="" />
     </option>
