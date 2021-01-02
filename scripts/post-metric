@@ -25,4 +25,4 @@ read -d '' -r json <<END_OF_JSON
 }
 END_OF_JSON
 
-echo "$json" | http -v --style native POST "http://localhost:8081/metric" "Authorization:Bearer $(<access_token.txt)"
+echo "$json" | http -v --style native POST "http://localhost:8082/metric" "Authorization:Bearer $(<access_token.txt)"

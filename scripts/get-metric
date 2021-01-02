@@ -22,4 +22,7 @@ case "$1" in
         exit 1
 esac
 
-curl -s -w "%{http_code}" -H "Authorization:Bearer $(<access_token.txt)" "http://localhost:8081/metric/${u}" | jq
+base_url="http://localhost:8082"
+
+#curl -s -w "%{http_code}" -H "Authorization:Bearer $(<access_token.txt)" "$base_url/metric/${u}" | jq
+http -v --style=native "$base_url/metric/${1}" "Authorization:Bearer $(<access_token.txt)"

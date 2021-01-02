@@ -15,4 +15,4 @@ case "$1" in
         exit 1
 esac
 
-http -v --style native POST "http://localhost:8081/profile" "Authorization:Bearer $(<access_token.txt)" "username=$1"
+http -v --style native POST "http://localhost:8082/profile" "Authorization:Bearer $(<access_token.txt)" "username=$1"

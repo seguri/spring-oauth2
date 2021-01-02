@@ -18,4 +18,24 @@ case "$1" in
         exit 1
 esac
 
-curl -s -X POST -u client:secret "http://localhost:8080/oauth/token?grant_type=password&username=${u}&password=${p}&scope=write" | jq -r '.access_token' | tee access_token.txt
+base_url="http://localhost:8080/oauth/token"
+
+if [[ $2 = -v ]]; then
+    http -v --style native -a client:secret POST "$base_url" "grant_type==password" "username==$u" "password==$p" "scope==write" | tee >(cat) | sed -n '$p' | jq
+    echo "WARNING: Token is not saved in verbose mode"
+    #
+    # Ideas to print verbose response and save token:
+    #   http --pretty all         forces colorful output even if redirecting to pipe
+    #   tee "$(tty)"              redirects to terminal and pipe (works from terminal, doesn't work from this script)
+    #   sed 's/\x1b\[[^m]*m//g'   deletes color codes
+    #   sed -n '$p'               prints last line (the one containing {"access_token": "", ...}
+    #
+    # More complex sed variation:
+    #   sed -n '/{/h; /{/!H; /}/{x;s/}.*/}/;/access_token/p}'
+    #     /{/h                            if a line contains {, it replaces the content of the hold space with this line
+    #     /{/!H                           if a line contains {, it doesn't append the content of the line to the hold space (but it will append all other lines)
+    #     /}/{x;s/}.*/}/;/access_token/p} if a line contains }, replaces the content of the pattern space with the content of the hold space, replaces (in the pattern space) whatever follows }, and prints the line if it contains access_token
+    #
+else
+    curl -s -X POST -u client:secret "${base_url}?grant_type=password&username=${u}&password=${p}&scope=write" | jq -r '.access_token' | tee access_token.txt
+fi

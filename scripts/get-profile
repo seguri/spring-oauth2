@@ -8,18 +8,14 @@
 #
 
 case "$1" in
-    admin)
-        u=admin
-        ;;
-    john)
-        u=john
-        ;;
-    jack)
-        u=jack
+    admin|john|jack|foo)
         ;;
     *)
         echo >&2 "$1: unknown user"
         exit 1
 esac
 
-curl -s -w "%{http_code}" -H "Authorization:Bearer $(<access_token.txt)" "http://localhost:8081/profile/${u}" | jq
+base_url="http://localhost:8082"
+
+#curl -s -w "%{http_code}" -H "Authorization:Bearer $(<access_token.txt)" "$base_url/profile/${1}" | jq
+http -v --style=native "$base_url/profile/${1}" "Authorization:Bearer $(<access_token.txt)"

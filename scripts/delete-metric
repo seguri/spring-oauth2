@@ -15,4 +15,4 @@ case "$1" in
         exit 1
 esac
 
-http -v --style native DELETE "http://localhost:8081/metric/$1" "Authorization:Bearer $(<access_token.txt)"
+http -v --style native DELETE "http://localhost:8082/metric/$1" "Authorization:Bearer $(<access_token.txt)"
