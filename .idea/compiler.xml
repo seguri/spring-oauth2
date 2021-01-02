@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="resource-server" />
+        <module name="advice-client" />
         <module name="authentication-server" />
         <module name="gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="advice-client" target="11" />
       <module name="authentication-server" target="11" />
       <module name="gateway" target="11" />
       <module name="resource-server" target="11" />
@@ -20,6 +22,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="advice-client" options="-parameters" />
       <module name="authentication-server" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="resource-server" options="-parameters" />
