@@ -27,6 +27,7 @@
     <module>authentication-server</module>
     <module>resource-server</module>
     <module>gateway</module>
+    <module>advice-client</module>
   </modules>
 
   <dependencyManagement>
