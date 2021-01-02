@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/profile/john"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "id": 2,
+      "username": "john"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
