@@ -55,7 +55,7 @@ To get the public key:
 
 Generation:
 
-    keytool -genkeypair -alias ssia -keyalg RSA -keypass ssia123 -keystore ssia.jks -storepass ssia123
+    keytool -genkeypair -alias ssia -keyalg RSA -keysize 2048 -keypass ssia123 -keystore ssia.jks -storepass ssia123
 
 Get public key:
 
